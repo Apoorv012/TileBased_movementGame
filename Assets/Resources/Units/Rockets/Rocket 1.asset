@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Rocket 1
   m_EditorClassIdentifier: 
   Faction: 1
-  UnitPrefab: {fileID: -5537803760055088612, guid: 74258a960435f724bbd5a0108b1a4203, type: 3}
+  UnitPrefab: {fileID: -1871476753442958613, guid: 15c4faad5402e3743b0e26342e9b2e33, type: 3}
