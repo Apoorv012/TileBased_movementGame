@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,22 +6,38 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     [SerializeField] private Color _baseColor, _offsetColor;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject _highlight;
+
+    public BaseUnit OccupiedUnit;
+    public bool Walkable()
+    {
+        return OccupiedUnit == null;
+    }
 
     public void init(bool _isOffset)
     {
         spriteRenderer.color = _isOffset ? _offsetColor : _baseColor;
-
     }
 
     private void OnMouseEnter()
     {
-        Debug.Log("Enter");
+        _highlight.SetActive(true);
     }
 
     private void OnMouseExit()
     {
-        Debug.Log("Exit");
+       _highlight.SetActive(false);
+    }
+
+    public void SetUnit(BaseUnit unit)
+    {
+        if(unit.OccupiedTile != null)
+        {
+            unit.OccupiedTile.OccupiedUnit = null;
+        }
+        unit.transform.position = transform.position;
+        OccupiedUnit = unit;
+        unit.OccupiedTile = this;
     }
 }
