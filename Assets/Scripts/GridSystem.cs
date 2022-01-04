@@ -23,9 +23,12 @@ public class GridSystem : MonoBehaviour
             {
                 var spawnedTile = Instantiate(tilePrefab, new Vector3(x, y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
+
+                bool isOffset = ((x + y) % 2 == 1);
+
+                spawnedTile.init(isOffset);
             }
         }
-
         _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f);
     }
 
