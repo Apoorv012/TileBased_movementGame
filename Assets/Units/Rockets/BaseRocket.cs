@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class BaseRocket : BaseUnit
 {
-    // Start is called before the first frame update
-    void Start()
+    public int RocketValue;
+    public bool isSorted = true;
+    private SpriteRenderer spriteRenderer;
+
+
+    private void Awake()
     {
-        
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-        
+        if (!isSorted)
+        {
+            const float precisionMultiplier = 10f;
+            spriteRenderer.sortingOrder = (int)(-transform.position.y * precisionMultiplier);
+
+            isSorted = true;
+        }
+    }
+
+    public void FixRocket()
+    {
+        ScoreManager.Instance.AddRocketScore(RocketValue);
+        Destroy(gameObject);
     }
 }

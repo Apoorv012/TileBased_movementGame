@@ -6,6 +6,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile tilePrefab;
     [SerializeField] private Transform _cam;
+    [SerializeField] private Transform tilesParentObject;
 
     public static GridManager Instance;
 
@@ -25,6 +26,7 @@ public class GridManager : MonoBehaviour
             {
                 Tile spawnedTile = Instantiate(tilePrefab, new Vector3(x, y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
+                spawnedTile.transform.parent = tilesParentObject;
 
                 bool isOffset = ((x + y) % 2 == 1);
 
@@ -41,14 +43,12 @@ public class GridManager : MonoBehaviour
     public Tile GetPlayerSpawnedTile()
     {
         Tile randomTile = GetTileAtPosition(new Vector2(Random.Range(1, _width - 2), Random.Range(1, _height - 2)));
-
         return randomTile.Walkable() ? randomTile : GetPlayerSpawnedTile();
     }
 
     public Tile GetRocketSpawnedTile()
     {
         Tile randomTile = GetTileAtPosition(new Vector2(Random.Range(1, _width - 2), Random.Range(1, _height - 2)));
-
         return randomTile.Walkable() ? randomTile : GetRocketSpawnedTile();
     }
 

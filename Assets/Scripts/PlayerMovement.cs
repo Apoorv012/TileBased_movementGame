@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private BaseUnit playerUnit;
+    [SerializeField] private BaseUnit basePlayerUnit;
+    [SerializeField] private BasePlayer playerUnit;
+
 
     private void Update()
     {
@@ -27,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Move(1, 0);
         }
+        
     }
 
     private void Move(int _x, int _y)
@@ -36,7 +39,14 @@ public class PlayerMovement : MonoBehaviour
         Tile tile = GridManager.Instance.GetTileAtPosition(new Vector2(transform.position.x + _x, transform.position.y + _y));
         if (tile)
         {
-            tile.SetUnit(playerUnit);
+            if(tile.OccupiedUnit != null)
+            {
+                // Rocket here
+                tile.OccupiedUnit.gameObject.GetComponent<BaseRocket>().FixRocket();
+
+            }
+            tile.SetUnit(basePlayerUnit);
+            playerUnit.UpdateSortingLayer();
         }
     }
 }

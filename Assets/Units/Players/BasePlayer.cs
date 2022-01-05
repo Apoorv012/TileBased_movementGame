@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class BasePlayer : BaseUnit
 {
-    // Start is called before the first frame update
-    void Start()
+    private SpriteRenderer spriteRenderer;
+    const float precisionMultiplier = 10f;
+
+    private void Awake()
     {
-        
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateSortingLayer()
     {
-        
+        spriteRenderer.sortingOrder = (int)(-transform.position.y * precisionMultiplier);
     }
 }
