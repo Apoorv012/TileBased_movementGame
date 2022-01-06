@@ -24,7 +24,6 @@ public class BaseRocket : BaseUnit
 
     public void RocketTakeOff()
     {
-        _rocket1.isFixed = true;
         rb.velocity += new Vector2(0, 10);
         Debug.Log("Destroying");
         Destroy(gameObject, 1f);
@@ -32,11 +31,14 @@ public class BaseRocket : BaseUnit
 
     public IEnumerator FixRocket(GameObject _playerGameObject, PlayerMovement _playerMovement)
     {
+        _rocket1.isFixed = true;
+        _rocket1.timerImage.color = Color.blue;
         _playerGameObject.GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(2);
         ScoreManager.Instance.AddRocketScore(RocketValue);
         _playerGameObject.GetComponent<SpriteRenderer>().enabled = true;
         _playerMovement.isFixing = false;
+        Destroy(_rocket1.timerCanvasGO);
         RocketTakeOff();
     }
 }
