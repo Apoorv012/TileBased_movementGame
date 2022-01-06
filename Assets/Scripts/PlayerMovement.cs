@@ -45,11 +45,8 @@ public class PlayerMovement : MonoBehaviour
                 if (tile.OccupiedUnit != null)
                 {
                     // Rocket here
-                    // IEnumerator FixRocketCoroutine = tile.OccupiedUnit.gameObject.GetComponent<BaseRocket>().FixRocket(gameObject);
-                    // StartCoroutine(FixRocketCoroutine);
                     StartCoroutine(tile.OccupiedUnit.gameObject.GetComponent<BaseRocket>().FixRocket(gameObject, this));
                     isFixing = true;
-                    //StartCoroutine(tile.OccupiedUnit.gameObject.GetComponent<BaseRocket>().something());
 
                 }
                 tile.SetUnit(basePlayerUnit);

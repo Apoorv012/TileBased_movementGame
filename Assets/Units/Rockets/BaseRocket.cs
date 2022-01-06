@@ -7,12 +7,9 @@ public class BaseRocket : BaseUnit
 {
     public int RocketValue;
     public bool isSorted = true;
-    private SpriteRenderer spriteRenderer;
-
-    private void Awake()
-    {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-    }
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Rocket1 _rocket1;
 
     private void LateUpdate()
     {
@@ -25,6 +22,14 @@ public class BaseRocket : BaseUnit
         }
     }
 
+    public void RocketTakeOff()
+    {
+        _rocket1.isFixed = true;
+        rb.velocity += new Vector2(0, 10);
+        Debug.Log("Destroying");
+        Destroy(gameObject, 1f);
+    }
+
     public IEnumerator FixRocket(GameObject _playerGameObject, PlayerMovement _playerMovement)
     {
         _playerGameObject.GetComponent<SpriteRenderer>().enabled = false;
@@ -32,6 +37,6 @@ public class BaseRocket : BaseUnit
         ScoreManager.Instance.AddRocketScore(RocketValue);
         _playerGameObject.GetComponent<SpriteRenderer>().enabled = true;
         _playerMovement.isFixing = false;
-        Destroy(gameObject);
+        RocketTakeOff();
     }
 }
