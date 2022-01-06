@@ -9,10 +9,12 @@ public class Tile : MonoBehaviour
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject _highlight;
 
+    public bool isWalkable = true;
+
     public BaseUnit OccupiedUnit;
     public bool Walkable()
     {
-        return OccupiedUnit == null;
+        return OccupiedUnit == null && isWalkable;
     }
 
     public void init(bool _isOffset)

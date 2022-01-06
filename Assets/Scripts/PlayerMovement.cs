@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
             if (GameManager.Instance.State != GameState.Gameplay)
                 return;
             Tile tile = GridManager.Instance.GetTileAtPosition(new Vector2(transform.position.x + _x, transform.position.y + _y));
-            if (tile)
+            if (tile && tile.isWalkable)
             {
                 if (tile.OccupiedUnit != null)
                 {

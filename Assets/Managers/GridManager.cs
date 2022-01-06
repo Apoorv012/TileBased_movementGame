@@ -101,38 +101,61 @@ public class GridManager : MonoBehaviour
         #endregion
 
         #region oceanTiles
+
+        Tile currentTile;
+
         // Top
         for (int _x = 0; _x < _width; _x++)
         {
             int _y = _height;
-            tiles[new Vector2(_x, _y)].ChangeSpriteTo(OceanTiles[0]);
+            currentTile = tiles[new Vector2(_x, _y)];
+            currentTile.ChangeSpriteTo(OceanTiles[0]);
+            currentTile.isWalkable = false;
         }
 
         // Right
         for (int _y =0; _y < _height; _y++)
         {
             int _x = _width;
-            tiles[new Vector2(_x, _y)].ChangeSpriteTo(OceanTiles[1]);
+            currentTile = tiles[new Vector2(_x, _y)];
+            currentTile.ChangeSpriteTo(OceanTiles[1]);
+            currentTile.isWalkable = false;
         }
 
         // Bottom
         for (int _x = 0; _x < _width; _x++)
         {
             int _y = -1;
-            tiles[new Vector2(_x, _y)].ChangeSpriteTo(OceanTiles[2]);
+            currentTile = tiles[new Vector2(_x, _y)];
+            currentTile.ChangeSpriteTo(OceanTiles[2]);
+            currentTile.isWalkable = false;
         }
 
         // Left
         for (int _y = 0; _y < _height; _y++)
         {
             int _x = -1;
-            tiles[new Vector2(_x, _y)].ChangeSpriteTo(OceanTiles[3]);
+            currentTile = tiles[new Vector2(_x, _y)];
+            currentTile.ChangeSpriteTo(OceanTiles[3]);
+            currentTile.isWalkable = false;
         }
 
-        tiles[new Vector2(_width, _height)].ChangeSpriteTo(OceanTiles[4]);     // Top-right ground tile
-        tiles[new Vector2(_width, -1)].ChangeSpriteTo(OceanTiles[5]);     // Bottom-right ground tile
-        tiles[new Vector2(-1, -1)].ChangeSpriteTo(OceanTiles[6]);     // Bottom-left ground tile
-        tiles[new Vector2(-1, _height)].ChangeSpriteTo(OceanTiles[7]);     // Top-left ground tile
+        currentTile = tiles[new Vector2(_width, _height)];
+        currentTile.ChangeSpriteTo(OceanTiles[4]);      // Top-right ground tile
+        currentTile.isWalkable = false;
+
+        currentTile = tiles[new Vector2(_width, -1)];
+        currentTile.ChangeSpriteTo(OceanTiles[5]);      // Bottom-right ground tile
+        currentTile.isWalkable = false;
+
+        currentTile = tiles[new Vector2(-1, -1)];
+        currentTile.ChangeSpriteTo(OceanTiles[6]);      // Bottom-left ground tile
+        currentTile.isWalkable = false;
+
+        currentTile = tiles[new Vector2(-1, _height)];
+        currentTile.ChangeSpriteTo(OceanTiles[7]);      // Top-left ground tile
+        currentTile.isWalkable = false;
+
         #endregion
 
         GameManager.Instance.UpdateGameState(GameState.SpawnPlayer);
