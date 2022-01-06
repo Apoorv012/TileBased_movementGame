@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private BaseUnit basePlayerUnit;
     [SerializeField] private BasePlayer playerUnit;
-
+    public bool isFixing = false;
 
     private void Update()
     {
@@ -34,19 +35,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(int _x, int _y)
     {
-        if (GameManager.Instance.State != GameState.Gameplay)
-            return;
-        Tile tile = GridManager.Instance.GetTileAtPosition(new Vector2(transform.position.x + _x, transform.position.y + _y));
-        if (tile)
+        if (!isFixing)
         {
-            if(tile.OccupiedUnit != null)
+            if (GameManager.Instance.State != GameState.Gameplay)
+                return;
+            Tile tile = GridManager.Instance.GetTileAtPosition(new Vector2(transform.position.x + _x, transform.position.y + _y));
+            if (tile)
             {
-                // Rocket here
-                tile.OccupiedUnit.gameObject.GetComponent<BaseRocket>().FixRocket();
+                if (tile.OccupiedUnit != null)
+                {
+                    // Rocket here
+                    // IEnumerator FixRocketCoroutine = tile.OccupiedUnit.gameObject.GetComponent<BaseRocket>().FixRocket(gameObject);
+                    // StartCoroutine(FixRocketCoroutine);
+                    StartCoroutine(tile.OccupiedUnit.gameObject.GetComponent<BaseRocket>().FixRocket(gameObject, this));
+                    isFixing = true;
+                    //StartCoroutine(tile.OccupiedUnit.gameObject.GetComponent<BaseRocket>().something());
 
+                }
+                tile.SetUnit(basePlayerUnit);
+                playerUnit.UpdateSortingLayer();
             }
-            tile.SetUnit(basePlayerUnit);
-            playerUnit.UpdateSortingLayer();
         }
     }
 }

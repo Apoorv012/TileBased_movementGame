@@ -179,8 +179,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e6aaa79c815f1c4580552212609cf3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseColor: {r: 0.43137255, g: 0.7372549, b: 0.3647059, a: 1}
-  _offsetColor: {r: 0.39007843, g: 0.6415094, b: 0.33527943, a: 1}
+  _baseSprite: {fileID: -8403557985035590536, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  _offsetSprite: {fileID: 3328892600903387666, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  OceanTiles:
+  - {fileID: 8128616309306851393, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: -3012751055600707397, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: 2792155021501799266, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: -2202403170320268411, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: 8060182499371607757, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: -6476633490589714570, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: 3372204606062638644, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: 6704554184929068451, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  BorderTiles:
+  - {fileID: 8940710645976746226, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: 6816012518738883990, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: 5572990345690995793, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: 4746713905714059452, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: -7758073209066455251, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: 4595231460401480177, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: 2450957294609224136, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
+  - {fileID: -486485247324520152, guid: a5a5271bebe763445a3cbaec43c93540, type: 3}
   spriteRenderer: {fileID: 2157479446229013973}
   _highlight: {fileID: 1668074166810755492}
   OccupiedUnit: {fileID: 0}

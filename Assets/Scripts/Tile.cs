@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    [SerializeField] private Color _baseColor, _offsetColor;
+    [SerializeField] private Sprite _baseSprite, _offsetSprite;
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject _highlight;
 
@@ -17,7 +17,7 @@ public class Tile : MonoBehaviour
 
     public void init(bool _isOffset)
     {
-        spriteRenderer.color = _isOffset ? _offsetColor : _baseColor;
+        spriteRenderer.sprite = _isOffset ? _offsetSprite : _baseSprite;
     }
 
     private void OnMouseEnter()
@@ -39,5 +39,10 @@ public class Tile : MonoBehaviour
         unit.transform.position = transform.position;
         OccupiedUnit = unit;
         unit.OccupiedTile = this;
+    }
+
+    public void ChangeSpriteTo(Sprite _sprite)
+    {
+        spriteRenderer.sprite = _sprite;
     }
 }

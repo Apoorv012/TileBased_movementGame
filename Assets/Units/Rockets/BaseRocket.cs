@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,6 @@ public class BaseRocket : BaseUnit
     public int RocketValue;
     public bool isSorted = true;
     private SpriteRenderer spriteRenderer;
-
 
     private void Awake()
     {
@@ -25,9 +25,13 @@ public class BaseRocket : BaseUnit
         }
     }
 
-    public void FixRocket()
+    public IEnumerator FixRocket(GameObject _playerGameObject, PlayerMovement _playerMovement)
     {
+        _playerGameObject.GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(2);
         ScoreManager.Instance.AddRocketScore(RocketValue);
+        _playerGameObject.GetComponent<SpriteRenderer>().enabled = true;
+        _playerMovement.isFixing = false;
         Destroy(gameObject);
     }
 }

@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
             case GameState.GenerateGrid:
                 GridManager.Instance.GenerateGrid();
                 break;
+            case GameState.RecolorGrid:
+                GridManager.Instance.RecolorGrid();
+                break;
             case GameState.SpawnPlayer:
                 UnitManager.Instance.SpawnPlayers();
                 break;
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
 public enum GameState
 {
     GenerateGrid,
+    RecolorGrid,
     SpawnPlayer,
     SpawnRocket,
     Gameplay,
