@@ -8,12 +8,32 @@ public class UnitManager : MonoBehaviour
     public static UnitManager Instance;
 
     private List<ScriptableUnit> _units;
+    private float TimeBtwSpawn = 0f;
+    private float startTimeBtwSpawn = 3f;
 
     private void Awake()
     {
         Instance = this;
 
         _units = Resources.LoadAll<ScriptableUnit>("Units").ToList();
+    }
+
+    private void Update()
+    {
+        if(GameManager.Instance.State == GameState.Gameplay)
+        {
+            if(TimeBtwSpawn <= 0)
+            {
+                SpawnRocket();
+                TimeBtwSpawn = startTimeBtwSpawn;
+                if (startTimeBtwSpawn > 2)
+                    startTimeBtwSpawn -= 0.2f;
+            }
+            else
+            {
+                TimeBtwSpawn -= Time.deltaTime;
+            }
+        }
     }
 
     public void SpawnPlayers()
@@ -30,24 +50,17 @@ public class UnitManager : MonoBehaviour
             randomSpawnedTile.SetUnit(spawnedPlayer);
         }
 
-        GameManager.Instance.UpdateGameState(GameState.SpawnRocket);
+        GameManager.Instance.UpdateGameState(GameState.Gameplay);
     }
 
-    public void SpawnRockets()
+    public void SpawnRocket()
     {
-        int RocketCount = 5;
+        BaseRocket randomPrefab = GetRandomUnit<BaseRocket>(Faction.Rocket);
+        BaseRocket spawnedRocket = Instantiate(randomPrefab);
 
-        for (int i = 0; i < RocketCount; i++)
-        {
-            BaseRocket randomPrefab = GetRandomUnit<BaseRocket>(Faction.Rocket);
-            BaseRocket spawnedRocket = Instantiate(randomPrefab);
+        Tile randomSpawnedTile = GridManager.Instance.GetRocketSpawnedTile();
 
-            Tile randomSpawnedTile = GridManager.Instance.GetRocketSpawnedTile();
-
-            randomSpawnedTile.SetUnit(spawnedRocket);
-        }
-
-        GameManager.Instance.UpdateGameState(GameState.Gameplay);
+        randomSpawnedTile.SetUnit(spawnedRocket);
     }
 
     private T GetRandomUnit<T>(Faction faction) where T : BaseUnit

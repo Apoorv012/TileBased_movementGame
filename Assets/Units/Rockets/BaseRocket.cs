@@ -10,6 +10,7 @@ public class BaseRocket : BaseUnit
     [SerializeField] Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Rocket1 _rocket1;
+    [SerializeField] private AudioSource TakeOffSound;
 
     private void LateUpdate()
     {
@@ -24,9 +25,9 @@ public class BaseRocket : BaseUnit
 
     public void RocketTakeOff()
     {
-        rb.velocity += new Vector2(0, 10);
-        Debug.Log("Destroying");
-        Destroy(gameObject, 1f);
+        rb.gravityScale = -1.5f;
+        TakeOffSound.Play();
+        Destroy(gameObject, 3f);
     }
 
     public IEnumerator FixRocket(GameObject _playerGameObject, PlayerMovement _playerMovement)

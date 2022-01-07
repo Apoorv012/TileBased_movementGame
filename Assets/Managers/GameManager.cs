@@ -36,9 +36,6 @@ public class GameManager : MonoBehaviour
             case GameState.SpawnPlayer:
                 UnitManager.Instance.SpawnPlayers();
                 break;
-            case GameState.SpawnRocket:
-                UnitManager.Instance.SpawnRockets();
-                break;
             case GameState.Gameplay:
                 break;
             case GameState.GameOver:
@@ -60,7 +57,6 @@ public enum GameState
     GenerateGrid,
     RecolorGrid,
     SpawnPlayer,
-    SpawnRocket,
     Gameplay,
     GameOver
 }
