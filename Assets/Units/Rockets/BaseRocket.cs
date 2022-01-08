@@ -25,6 +25,11 @@ public class BaseRocket : BaseUnit
 
     public void RocketTakeOff()
     {
+        if (HealthManager.Instance.health < 8)
+        {
+            HealthManager.Instance.health++;
+            HealthManager.Instance.UpdateHearts();
+        }
         rb.gravityScale = -1.5f;
         TakeOffSound.Play();
         Destroy(gameObject, 3f);

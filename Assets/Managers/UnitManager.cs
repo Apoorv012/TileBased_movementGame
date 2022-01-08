@@ -26,7 +26,7 @@ public class UnitManager : MonoBehaviour
             {
                 SpawnRocket();
                 TimeBtwSpawn = startTimeBtwSpawn;
-                if (startTimeBtwSpawn > 2)
+                if (startTimeBtwSpawn > 1)
                     startTimeBtwSpawn -= 0.2f;
             }
             else

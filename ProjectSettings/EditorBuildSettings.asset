@@ -7,8 +7,11 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/MenuScene.unity
-    guid: 00bb2827a3c7e0d4c904f7673a1e782d
+    guid: ee7525238f7923c40bf8a576268e167a
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/GameOverScene.unity
+    guid: 00bb2827a3c7e0d4c904f7673a1e782d
   m_configObjects: {}

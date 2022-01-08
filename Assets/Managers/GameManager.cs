@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
             case GameState.Gameplay:
                 break;
             case GameState.GameOver:
+                Debug.Log("here gamemanager");
+                Gameover();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -46,10 +49,12 @@ public class GameManager : MonoBehaviour
 
         // OnGameStateChanged?.Invoke(newState);
     }
-    
 
-    
-
+    public void Gameover()
+    {
+        Debug.Log("called");
+        SceneManager.LoadScene("GameOverScene");
+    }
 }
 
 public enum GameState
